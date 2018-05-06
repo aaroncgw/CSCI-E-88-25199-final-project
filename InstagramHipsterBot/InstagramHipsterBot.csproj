@@ -32,9 +32,15 @@
     <Reference Include="Xamarin.UITest">
       <HintPath>..\packages\Xamarin.UITest.2.2.4\lib\net45\Xamarin.UITest.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test.cs" />
+    <Compile Include="CustomVisionResponse.cs" />
+    <Compile Include="DataProcessingPipelineReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

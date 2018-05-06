@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramWrapper", "Instagr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramHipsterBot", "InstagramHipsterBot\InstagramHipsterBot.csproj", "{D8EE9C9F-57EC-488D-8DAC-17782125A495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramStalkerBot", "InstagramStalkerBot\InstagramStalkerBot.csproj", "{F015002F-ACEF-48EC-8C19-1D311440DBAC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -31,13 +29,5 @@ Global
 		{D8EE9C9F-57EC-488D-8DAC-17782125A495}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{D8EE9C9F-57EC-488D-8DAC-17782125A495}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{D8EE9C9F-57EC-488D-8DAC-17782125A495}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Release|iPhone.Build.0 = Release|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{F015002F-ACEF-48EC-8C19-1D311440DBAC}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
