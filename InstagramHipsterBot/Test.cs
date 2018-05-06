@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -22,6 +21,7 @@ namespace InstagramHipsterBot
     [TestFixture]
     public class Test
     {
+        const string Ec2MasterUrl = "http://ec2-18-188-248-171.us-east-2.compute.amazonaws.com/";
         const string CustomVisionUrl = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/e74dd823-4617-4ff2-94dd-6360ce255414/image?iterationId=f8ef8c82-6560-4df9-a6b2-b5c02b951d50";
 
         string fisherHipsterDeviceIdentifier = "57ce11c580f8ffdf9a10967fbcc682e63c29d0b5";
@@ -33,6 +33,12 @@ namespace InstagramHipsterBot
 
         iOSApp app;
         CurrentBot bot = CurrentBot.FisherHipster;
+
+        string Username {
+            get {
+                return bot == CurrentBot.FisherHipster ? "fisherhipster" : "coffeebihipster";
+            }
+        }
 
         [SetUp]
         public void Setup ()
@@ -87,12 +93,23 @@ namespace InstagramHipsterBot
 
                         var imageFileInfo = app.Screenshot(DateTime.Now.ToString());
 
+                        CustomVisionResponse imagePrediction = null;
+
                         try {
-                            MakePredictionRequest(imageFileInfo.FullName).Wait();
+                            var predictionRequestTask = MakePredictionRequest(imageFileInfo.FullName);
+                            predictionRequestTask.Wait();
+
+                            imagePrediction = predictionRequestTask.Result;
                         } catch(Exception ex) {
-                            Console.WriteLine(ex.Message);
+                            Console.WriteLine($"Failed to get image ML details: {ex.Message}");
                         } finally {
                             File.Delete(imageFileInfo.FullName);
+                        }
+
+                        try {
+                            ReportLikeToAWS (imagePrediction, hashtags).Wait();
+                        } catch(Exception ex) {
+                            Console.WriteLine($"Failed to report like to AWS: {ex.Message}");
                         }
 
                         break;
@@ -100,6 +117,25 @@ namespace InstagramHipsterBot
                 }
 
                 app.ScrollDown();
+            }
+        }
+
+        async Task ReportLikeToAWS (CustomVisionResponse imagePrediction, IEnumerable<string> hashtags)
+        {
+            var client = new HttpClient();
+
+            var dataProcessingPipeReport = new DataProcessingPipelineReport {
+                ImageAnalysis = imagePrediction,
+                Username = Username,
+                Timestamp = DateTime.Now,
+                Hashtags = hashtags,
+                Id = Guid.NewGuid()
+            };
+
+            var json = JsonConvert.SerializeObject(dataProcessingPipeReport);
+
+            using (var content = new StringContent (json)) {
+                var response = await client.PostAsync(Ec2MasterUrl, content);
             }
         }
 
