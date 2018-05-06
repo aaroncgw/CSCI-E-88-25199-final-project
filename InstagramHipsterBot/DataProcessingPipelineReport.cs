@@ -17,8 +17,5 @@ namespace InstagramHipsterBot
 
         [JsonProperty("Timestamp")]
         public DateTime Timestamp { get; set; }
-
-        [JsonProperty("Id")]
-        public Guid Id { get; set; }
     }
 }
