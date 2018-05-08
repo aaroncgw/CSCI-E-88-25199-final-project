@@ -4,6 +4,7 @@ PUT /instagram_report
       "report":{
          "properties":{
             "ImageAnalysis":{
+               "type": "object",
                "properties":{
                   "Id":{
                      "type":"keyword"
@@ -18,6 +19,7 @@ PUT /instagram_report
                      "type":"date"
                   },
                   "Predictions":{
+                     "type": "object",
                      "properties":{
                         "TagId":{
                            "type":"keyword"
@@ -32,13 +34,7 @@ PUT /instagram_report
                   }
                }
             },
-            "Hashtags":{
-               "properties":{
-                  "Tag":{
-                     "type":"keyword"
-                  }
-               }
-            },
+            "Hashtags":{"type" : "keyword"},
             "Username":{
                "type":"keyword"
             },
