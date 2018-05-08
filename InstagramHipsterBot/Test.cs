@@ -128,7 +128,8 @@ namespace InstagramHipsterBot
                 ImageAnalysis = imagePrediction,
                 Username = Username,
                 Timestamp = DateTime.Now,
-                Hashtags = hashtags
+                Hashtags = hashtags,
+                Id = Guid.NewGuid ()
             };
 
             var json = JsonConvert.SerializeObject(dataProcessingPipeReport);
