@@ -18,6 +18,5 @@ while var == 1 :
             json_string = content.split('(data-HEAP): ')[1]
 
             stalker_report_json = json.loads(json_string)
-            print (stalker_report_json['Hashtags'])
 
             es.index(index='instagram_report', doc_type='report', id=stalker_report_json['ImageAnalysis']['Id'], body=stalker_report_json)
