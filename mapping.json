@@ -1,0 +1,47 @@
+PUT /instagram_report
+{
+   "mappings":{
+      "report":{
+         "properties":{
+            "ImageAnalysis":{
+               "type": "object",
+               "properties":{
+                  "Id":{
+                     "type":"keyword"
+                  },
+                  "Project":{
+                     "type":"keyword"
+                  },
+                  "Iteration":{
+                     "type":"keyword"
+                  },
+                  "Created":{
+                     "type":"date"
+                  },
+                  "Predictions":{
+                     "type": "object",
+                     "properties":{
+                        "TagId":{
+                           "type":"keyword"
+                        },
+                        "Tag":{
+                           "type":"keyword"
+                        },
+                        "Probability":{
+                           "type":"half_float"
+                        }
+                     }
+                  }
+               }
+            },
+            "Hashtags":{"type" : "keyword"},
+            "Username":{
+               "type":"keyword"
+            },
+            "Timestamp":{
+               "type":"date"
+            }
+         }
+      }
+   }
+}
